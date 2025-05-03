@@ -6,9 +6,16 @@ contract WriteToFixedArray {
 
     function main(uint256[5] memory x) external {
         assembly {
+            let writeslot := writeHere.slot
+            for{let i := 0}lt(i,5) {i :=add(i,1)} {
+            let writeslotele := add(writeslot,i)
+            sstore(writeslotele,mload(add(x,mul(i,0x20))))
+
+
+            }
             // your code here
             // store the values in the fixed array `x` in the storage variable `writeHere`
-            // Hint: https://www.rareskills.io/post/solidity-dynamic
+            // Hint https://www.rareskills.io/post/solidity-dynamic
         }
     }
 

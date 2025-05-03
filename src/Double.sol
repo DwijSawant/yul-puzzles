@@ -5,6 +5,9 @@ contract Double {
 
   function main(uint256 x) external pure returns (uint256) {
       assembly {
+        let double:= mul(x,2)
+        mstore(0x00,double)
+        return(0x00,0x20)
           // your code here
           // return 2 * x using assembly
           // assume x will always be less

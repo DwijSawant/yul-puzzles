@@ -7,6 +7,10 @@ contract EventWithData {
 
     function main(uint256 _number) external {
         assembly {
+            mstore(0x00,"MyEvent(uint256)")
+            let eventSignature := keccak256(0x00,16)  //how 16 cuz the count e-v-e-n-t-(-u-i-n-t-2-5-6-) so its 16 bytes
+            mstore(0x20,_number)
+            log1(0x20,0x20,eventSignature)
             // your code here
             // emit the `MyEvent(uint256)` event
             // the event has one topic and one non-indexed field:

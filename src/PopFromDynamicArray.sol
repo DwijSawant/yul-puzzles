@@ -6,6 +6,12 @@ contract PopFromDynamicArray {
 
     function main() external {
         assembly {
+            let slot := popFromMe.slot
+            let length := sload(slot)
+            let baseslot := keccak256(0x00,0x20)
+            let elementslot := add(baseslot,sub(length,1))
+            sstore(elementslot,0)
+            sstore(slot,sub(length,1))
             // your code here
             // pop the last element from the dynamic array `popFromMe`
             // dont forget to clean the popped element's slot.

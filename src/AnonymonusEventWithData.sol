@@ -7,6 +7,8 @@ contract AnonymonusEventWithData {
 
     function main(uint256 num) external {
         assembly {
+            mstore(0x00,num)
+            log0(0x00,0x20)
             // your code here
             // emit the `MyEvent(uint256)` without using the event hash as a topic.
             // Anonymous events don't have the event signature (topic0) included.

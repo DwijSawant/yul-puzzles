@@ -10,6 +10,11 @@ contract ReadFromDynamicArray {
 
     function main(uint256 index) external view returns (uint256) {
         assembly {
+            let slotnum := readMe.slot
+            let eleslotnum := add(keccak256(slotnum ,0x20),index)
+            let result := sload(eleslotnum)
+            mstore(0x00, result )
+            return(0x00 , 0x20)
             // your code here
             // read the value at the `index` in the dynamic array `readMe`
             // and return it
@@ -18,3 +23,4 @@ contract ReadFromDynamicArray {
         }
     }
 }
+

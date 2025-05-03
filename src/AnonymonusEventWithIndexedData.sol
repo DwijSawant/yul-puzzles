@@ -7,6 +7,8 @@ contract AnonymonusEventWithIndexedData {
 
     function main(address emitter, bytes32 id, uint256 num) external {
         assembly {
+            mstore(0x00,num)
+            log2(0x00,0x20,emitter,id)
             // your code here
             // emit the `MyEvent(address,bytes32,uint256)` event.
             // Hint: Use `log3` to emit the event with three parameters, without including the event signature (topic0).

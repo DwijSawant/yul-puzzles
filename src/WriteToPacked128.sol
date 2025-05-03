@@ -7,6 +7,11 @@ contract WriteToPacked128 {
 
     function main(uint256 v) external {
         assembly {
+            let slot := someValue.slot
+            let data := sload(slot)
+            let newData := and(shl(128,data),v)
+            // mstore(0x00,slot)
+            sstore(slot,newData)
             // your code here
             // change the value of `writeHere` storage variable to `v`
             // be careful not to alter the value of `someValue` variable

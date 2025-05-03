@@ -5,6 +5,8 @@ contract Return42 {
 
   function main() external pure returns (uint256) {
       assembly {
+        mstore(0x00,0x2A)
+        return(0x00,0x32)
           // your code here
           // return 42 in decimal
           // hint: return works the same way as revert

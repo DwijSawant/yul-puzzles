@@ -8,6 +8,11 @@ contract EventWithIndexedData {
     function main(address emitter, bytes32 id, uint256 num) external {
         assembly {
             // your code here
+            mstore(0x00,"MyEvent(address,bytes32,uint256)")
+            let eventsig := keccak256(0x00,32)
+
+            mstore(0x20,num)
+            log3(0x20,0x20,eventsig,emitter,id)
             // emit the `MyEvent(address,bytes32,uint256)` event
             // the event has three components: two indexed fields (`emitter`, `id`) and one non-indexed field (`num`)
             // use `log3` to emit the event with three topics:

@@ -16,6 +16,12 @@ contract ReadFromPacked64 {
 
     function main() external view returns (uint256) {
         assembly {
+            let slot := someValue3.slot
+            let data := sload(slot)
+            let target := shr(128,data)
+            target:= and(target,0xFFFFFFFFFFFFFFFF)
+            mstore(0x00,target)
+            return(0x00 ,0x20)
             // your code here
             // unpack and read data from the storage variable `readMe` of type uint64
             // then return it
